@@ -30,12 +30,15 @@ int main()
 
     std::vector<matrice<double>> VT = VecteurTemporel(duree, delta_temp, CI, longueur, delta_spat);
 
-    Euler_Explicite<double>(&VT, K, delta_temp);
+    Euler_Explicite<double>(VT, K, delta_temp);
     
-    InscriptionDansFichier(&VT, std::string("resultat_explicite.txt"));
+    InscriptionDansFichier(VT, std::string("resultat_explicite.txt"));
 
-    Euler_implicite<double>(&VT, delta_temp, K);
+    Euler_implicite<double>(VT, delta_temp, K);
 
-    InscriptionDansFichier(&VT, std::string("resultat_implicite.txt"));
+    InscriptionDansFichier(VT, std::string("resultat_implicite.txt"));
 }
+
+
+
 
