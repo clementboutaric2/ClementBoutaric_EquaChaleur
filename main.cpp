@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <string>
 #include "matrice.hpp"
 #include "corps_test.hpp"
 #include "resolution.hpp"
 #include "Euler_explicite.hpp"
+#include "Euler_implicite.hpp"
 #include "graphisme.hpp"
 
 
@@ -30,5 +32,10 @@ int main()
 
     Euler_Explicite<double>(&VT, K, delta_temp);
     
-    InscriptionDansFichier(&VT);
+    InscriptionDansFichier(&VT, std::string("resultat_explicite.txt"));
+
+    Euler_implicite<double>(&VT, delta_temp, K);
+
+    InscriptionDansFichier(&VT, std::string("resultat_implicite.txt"));
 }
+
