@@ -32,11 +32,13 @@ void Euler_implicite(std::vector<matrice<T>>* VectT, const T& deltaTemp,
 {
 
     matrice<T> Id (K.Size()[0],K.Size()[1]);
+    matrice<T> dtK (deltaTemp*K);
 
     for (int i = 1; i <= Id.Size()[0]; i++) {Id.setValue(i,i,1);}
 
     for (auto it = std::begin(*VectT)+1; it != std::end(*VectT); it++)
     {
-        *it = Gradient_conjugue(Id-deltaTemp*K*(*(it-1)), *(it-1), *(it-1));
+        matrice<T> A (Id-dtk*(*(it-1)));
+        *it = Gradient_conjugue(&A, *(it-1), *(it-1));
     }
 }
